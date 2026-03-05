@@ -1,0 +1,412 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #0e6e6d; -webkit-text-stroke: #0e6e6d}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; -webkit-text-stroke: #000000; min-height: 16.0px}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #18702b; -webkit-text-stroke: #18702b}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #6f0ec3; -webkit-text-stroke: #6f0ec3}
+    span.s1 {font-kerning: none; color: #6f0ec3; background-color: #ecf1f7; -webkit-text-stroke: 0px #6f0ec3}
+    span.s2 {font-kerning: none; background-color: #ecf1f7}
+    span.s3 {font-kerning: none; color: #0e6e6d; background-color: #ecf1f7; -webkit-text-stroke: 0px #0e6e6d}
+    span.s4 {font-kerning: none; color: #18702b; background-color: #ecf1f7; -webkit-text-stroke: 0px #18702b}
+    span.s5 {font-kerning: none; color: #000000; background-color: #ecf1f7; -webkit-text-stroke: 0px #000000}
+    span.s6 {font-kerning: none}
+    span.s7 {font-kerning: none; color: #a4450b; background-color: #ecf1f7; -webkit-text-stroke: 0px #a4450b}
+    span.s8 {font-kerning: none; color: #bf1c25; background-color: #ecf1f7; -webkit-text-stroke: 0px #bf1c25}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">import</span><span class="s2"> </span><span class="s3">React</span><span class="s2">, { useState } </span><span class="s1">from</span><span class="s2"> </span><span class="s4">'react'</span><span class="s2">;</span></p>
+<p class="p2"><span class="s1">import</span><span class="s5"> { </span><span class="s2">ChevronLeft</span><span class="s5">, </span><span class="s2">Info</span><span class="s5">, </span><span class="s2">Droplets</span><span class="s5">, </span><span class="s2">Sun</span><span class="s5">, </span><span class="s2">Thermometer</span><span class="s5">, </span><span class="s2">Box</span><span class="s5">, </span><span class="s2">Wind</span><span class="s5">, </span><span class="s2">Search</span><span class="s5"> } </span><span class="s1">from</span><span class="s5"> </span><span class="s4">'lucide-react'</span><span class="s5">;</span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<p class="p2"><span class="s1">const</span><span class="s5"> </span><span class="s2">BulbophyllumApp</span><span class="s5"> = () =&gt; {</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> [selectedTaxon, setSelectedTaxon] = useState(</span><span class="s1">null</span><span class="s2">);</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> [searchTerm, setSearchTerm] = useState(</span><span class="s4">''</span><span class="s2">);</span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> generalCare = {</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>es: [</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>{ id: </span><span class="s2">'hydration'</span><span class="s5">, icon: &lt;</span><span class="s3">Droplets</span><span class="s5"> className=</span><span class="s2">"w-5 h-5"</span><span class="s5"> /&gt;, title: </span><span class="s2">'Hidratación'</span><span class="s5">, content: </span><span class="s2">'Humedad constante en las raíces. Bandejas con 0.6 cm de agua debajo de macetas para microclima de alta presión de vapor. Preferencia por agua de lluvia u ósmosis inversa.'</span><span class="s5"> },</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>{ id: </span><span class="s2">'light'</span><span class="s5">, icon: &lt;</span><span class="s3">Sun</span><span class="s5"> className=</span><span class="s2">"w-5 h-5"</span><span class="s5"> /&gt;, title: </span><span class="s2">'Luz'</span><span class="s5">, content: </span><span class="s2">'Entre 3,000 y 5,000 bujías-pie (15,000 a 20,000 lux). Sombra borrosa e indistinta. Malla Aluminet al 50% en verano previene daños térmicos.'</span><span class="s5"> },</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>{ id: </span><span class="s2">'temp'</span><span class="s5">, icon: &lt;</span><span class="s3">Thermometer</span><span class="s5"> className=</span><span class="s2">"w-5 h-5"</span><span class="s5"> /&gt;, title: </span><span class="s2">'Temperatura'</span><span class="s5">, content: </span><span class="s2">'Rango de 15°C a 32°C. Caída nocturna de 6°C a 8°C para inducir floración. Evitar temperaturas sobre 40.5°C.'</span><span class="s5"> },</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>{ id: </span><span class="s2">'substrate'</span><span class="s5">, icon: &lt;</span><span class="s3">Box</span><span class="s5"> className=</span><span class="s2">"w-5 h-5"</span><span class="s5"> /&gt;, title: </span><span class="s2">'Sustrato'</span><span class="s5">, content: </span><span class="s2">'Macetas de plástico impermeables. Mezcla 50:50 de musgo sphagnum y perlita. Trasplante cada tres años en primavera u otoño.'</span><span class="s5"> },</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>{ id: </span><span class="s2">'humidity'</span><span class="s5">, icon: &lt;</span><span class="s3">Wind</span><span class="s5"> className=</span><span class="s2">"w-5 h-5"</span><span class="s5"> /&gt;, title: </span><span class="s2">'Humedad Ambiental'</span><span class="s5">, content: </span><span class="s2">'Mínimo 75% constante. Circulación de aire vigorosa previene patógenos como Botrytis.'</span><span class="s5"> }</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>],</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>en: [</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>{ id: </span><span class="s2">'hydration'</span><span class="s5">, icon: &lt;</span><span class="s3">Droplets</span><span class="s5"> className=</span><span class="s2">"w-5 h-5"</span><span class="s5"> /&gt;, title: </span><span class="s2">'Hydration'</span><span class="s5">, content: </span><span class="s2">'Constant root moisture. Trays with 0.25 inches (0.6 cm) of water beneath plastic pots. Rainwater or RO water strictly preferred.'</span><span class="s5"> },</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>{ id: </span><span class="s2">'light'</span><span class="s5">, icon: &lt;</span><span class="s3">Sun</span><span class="s5"> className=</span><span class="s2">"w-5 h-5"</span><span class="s5"> /&gt;, title: </span><span class="s2">'Light'</span><span class="s5">, content: </span><span class="s2">'3,000 to 5,000 foot-candles (15,000 to 20,000 lux). Fuzzy shadow test. 50% Aluminet shade cloth recommended in peak summer.'</span><span class="s5"> },</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>{ id: </span><span class="s2">'temp'</span><span class="s5">, icon: &lt;</span><span class="s3">Thermometer</span><span class="s5"> className=</span><span class="s2">"w-5 h-5"</span><span class="s5"> /&gt;, title: </span><span class="s2">'Thermal'</span><span class="s5">, content: </span><span class="s2">'Range of 60°F to 90°F (15°C to 32°C). Diurnal shift of 6°C to 8°C required. Avoid temperatures exceeding 105°F.'</span><span class="s5"> },</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>{ id: </span><span class="s2">'substrate'</span><span class="s5">, icon: &lt;</span><span class="s3">Box</span><span class="s5"> className=</span><span class="s2">"w-5 h-5"</span><span class="s5"> /&gt;, title: </span><span class="s2">'Substrate'</span><span class="s5">, content: </span><span class="s2">'Plastic pots preferred. 50:50 premium sphagnum and perlite mix. Repot every three years during active growth.'</span><span class="s5"> },</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>{ id: </span><span class="s2">'humidity'</span><span class="s5">, icon: &lt;</span><span class="s3">Wind</span><span class="s5"> className=</span><span class="s2">"w-5 h-5"</span><span class="s5"> /&gt;, title: </span><span class="s2">'Humidity'</span><span class="s5">, content: </span><span class="s2">'75% baseline relative humidity. Vigorous air circulation required to prevent fungal pathogens.'</span><span class="s5"> }</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>]</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span>};</span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> taxa = [</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum mirum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Described by Johannes Jacobus Smith in 1906. Native to Peninsular Thailand, Sumatra, Borneo, Java, Bali, and Flores. Creeping rhizome with 1-3 cm spacing. The name means 'wonderful' or 'strange'. Cultivate in intermediate-to-warm temperatures in wide, shallow baskets with 50:50 sphagnum and perlite."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Descrita por Johannes Jacobus Smith en 1906. Nativa de Tailandia peninsular, Sumatra, Borneo, Java, Bali y Flores. Rizoma rastrero con espacio de 1-3 cm. El nombre significa 'maravilloso' o 'extraño'. Cultivar en temperaturas intermedias a cálidas en cestas anchas con 50:50 sphagnum y perlita."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum speciosum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Described by Rudolf Schlechter in 1912. Originates from forests of Papua New Guinea (600-1,200m). Known as 'The Outstanding Bulbophyllum'. Produces a solitary flower up to 6.7 cm across. Requires hyper-hydrated environments and intense late-afternoon misting."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Descrita por Rudolf Schlechter en 1912. Originaria de los bosques de Papúa Nueva Guinea (600-1,200 m). Conocida como 'El Bulbophyllum Excepcional'. Produce una flor solitaria de hasta 6.7 cm de ancho. Requiere ambientes hiperhidratados y nebulización intensa por la tarde."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum translucidum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Described in 2016. Endemic to the Philippines (Dinagat, Leyte, Mindanao, Samar). Inhabits lowland forests at 321m. Flowers have glass-like transparency. Requires strict hot-growing conditions, intense shade, and constant moisture."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Descrita en 2016. Endémica de Filipinas (Dinagat, Leyte, Mindanao, Samar). Habita bosques de tierras bajas a 321 m. Flores con transparencia similar al vidrio. Requiere condiciones de crecimiento cálido, sombra intensa y humedad constante."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum Elizabeth Ann 'Buckleberry'"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Hybrid of B. longissimum and B. rothschildianum. Registered in 1969. Awarded FCC and CCE by AOS. Trailing lateral sepals with red spotting. Requires wide, shallow pans and heavy feeding during growth."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Híbrido de B. longissimum y B. rothschildianum. Registrado en 1969. Premiado con FCC y CCE por la AOS. Sépalos laterales colgantes con moteado rojo. Requiere bandejas anchas y alimentación pesada durante el crecimiento."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum macranthum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Described by John Lindley. Wide distribution in Southeast Asia. Large, fleshy flowers with a clove-like scent. Aggressive creeping rhizome requires tree-fern mounts or large horizontal baskets."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Descrita por John Lindley. Amplia distribución en el sudeste asiático. Flores grandes y carnosas con aroma a clavo. Rizoma rastrero agresivo requiere montajes de helecho arborescente o cestas horizontales grandes."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum elevatopunctatum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Described by J.J. Smith. Features raised, blister-like dots on flowers. Mimics biological debris. Intermediate-to-warm grower. Benefits from the shallow water tray technique."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Descrita por J.J. Smith. Presenta puntos elevados tipo ampolla en las flores. Imita desechos biológicos. Crecimiento intermedio a cálido. Se beneficia de la técnica de bandeja de agua poco profunda."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum bolsteri"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Named by Oakes Ames. Endemic to the Philippines. Named after field collectors of the early 20th century. Lowland humid environment. Requires the 'POO' rule and 50:50 sphagnum-perlite mix."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Nombrada por Oakes Ames. Endémica de Filipinas. Honra a recolectores de principios del siglo XX. Ambiente húmedo de tierras bajas. Requiere la regla 'POO' y mezcla 50:50 de sphagnum y perlita."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum crassipes"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Documented by Joseph Dalton Hooker in 1896. Found in China, Bhutan, India, Bangladesh, and Myanmar. Name means 'thick foot'. Swollen rhizome stores water for dry periods. Needs intermediate temperatures and bright, filtered light."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Documentada por Joseph Dalton Hooker en 1896. Se encuentra en China, Bután, India, Bangladesh y Myanmar. El nombre significa 'pie grueso'. Rizoma hinchado almacena agua para periodos secos. Necesita temperaturas intermedias y luz brillante filtrada."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum subcubicum (Accepted as B. pintungense)"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Originally described by J.J. Smith in 1913. Pseudobulbs develop cubic shapes. Demands high ambient humidity (85%+). Warm-to-hot grower. Rapidly shrivels if moisture drops."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Descrita originalmente por J.J. Smith en 1913. Los pseudobulbos desarrollan formas cúbicas. Exige alta humedad ambiental (85%+). Crecimiento cálido a caliente. Se encoge rápido si baja la humedad."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum falcatum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"African species revised by Reichenbach in 1861. Flattened rachis mimics a sickle. Rachis performs secondary photosynthesis. Warm grower, tolerates lower light than Asian cousins."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Especie africana revisada por Reichenbach en 1861. Raquis aplanado imita una hoz. El raquis realiza fotosíntesis secundaria. Crecimiento cálido, tolera menos luz que las especies asiáticas."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum cephalophorum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Described by Garay, Hamer, and Siegerist. Name means 'head-bearing'. Clustered flowers mimic a single decaying head. Risk of Botrytis rot; requires high air circulation around flowers."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Descrita por Garay, Hamer y Siegerist. El nombre significa 'que lleva cabeza'. Flores agrupadas imitan una cabeza en descomposición. Riesgo de pudrición por Botrytis; requiere alta circulación de aire en las flores."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum thaiorum (Accepted as B. papillosum)"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"High-altitude cloud forest epiphyte (600-2,000m). Features papillose lateral sepals. 'F. Red' form is highly prized. Requires cool-to-intermediate regime; sensitive to stagnant heat."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Epífita de bosque nuboso de gran altitud (600-2,000 m). Posee sépalos laterales papilosos. La forma 'F. Red' es muy valorada. Requiere régimen frío a intermedio; sensible al calor estancado."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum pecten-veneris"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Name means 'Venus's comb'. Parallel lateral sepals resemble comb teeth. Fine root system; cannot survive 24 hours of desiccation. Supplemental organic feeding recommended."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"El nombre significa 'peine de Venus'. Sépalos laterales paralelos parecen dientes de un peine. Raíces finas; no soporta 24 horas de sequedad. Se recomienda alimentación orgánica suplementaria."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum purpurascens"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Described by Teijsmann and Binnendijk. Name means 'becoming purple'. Photoprotective mechanism using anthocyanins. Requires pH 5.8 water to ensure mineral availability for pigment production."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Descrita por Teijsmann y Binnendijk. El nombre significa 'volviéndose púrpura'. Mecanismo fotoprotector con antocianinas. Requiere agua a pH 5.8 para asegurar minerales para los pigmentos."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum auratum flavum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Xanthic mutation of B. auratum. Lacks red/purple pigments; flowers are pure yellow. Highly vulnerable to phototoxicity. Requires deeper shade and 75%+ humidity."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Mutación xántica de B. auratum. Carece de pigmentos rojos/púrpuras; flores amarillo puro. Vulnerable a fototoxicidad. Requiere sombra profunda y humedad sobre el 75%."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum nitidum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Described by Schlechter from New Guinea. Name means 'shining' or 'glossy'. Polished appearance acts as water barrier and UV deflector. Must grow in plastic pots with water trays."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Descrita por Schlechter en Nueva Guinea. El nombre significa 'brillante'. Apariencia pulida actúa como barrera hídrica y deflector UV. Debe crecer en macetas de plástico con bandejas de agua."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum infundibuliforme"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Leaves form a watertight biological funnel. Traps rain and debris to feed the roots. Requires weekly diluted organic fertilizers directly into the root zone."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Hojas forman un embudo biológico hermético. Atrapa lluvia y desechos para alimentar las raíces. Requiere fertilizantes orgánicos diluidos semanales directo a la raíz."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum vietnamense"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Endemic to Vietnam highlands. Bathed in freezing cloud fogs. Mandatory nocturnal temperature drop of 6°C to 8°C. Constant mechanical airflow needed to prevent crown rot."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Endémica de las tierras altas de Vietnam. Bañada en nieblas heladas. Caída nocturna obligatoria de 6°C a 8°C. Flujo de aire constante para prevenir pudrición de corona."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum mucronatum alagense"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Found in Philippines and Sulawesi (1,400-1,600m). Sharp spine-like point at leaf apex. Cold mountainous origin; susceptible to heat stress above 35°C. Requires aluminized shade netting."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Se encuentra en Filipinas y Sulawesi (1,400-1,600 m). Punta afilada en el ápice de la hoja. Origen montañoso frío; susceptible a estrés por calor sobre 35°C. Requiere malla de sombra aluminizada."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum lasiochilum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Fragrance mimics strawberry candy. Deviation from the genus's typical foul odors. Vigorous and forgiving. Thrives in 50:50 sphagnum-perlite with weekly watering."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Fragancia imita caramelos de fresa. Diferente a los olores fétidos típicos del género. Vigorosa y tolerante. Prospera en 50:50 sphagnum-perlita con riego semanal."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum pardalotum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Name means 'leopard-spotted'. Advanced disruptive coloration confuses insects. Diminutive size with no moisture reserves. Requires 85%+ humidity; plastic pots are safest."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"El nombre significa 'manchado como leopardo'. Coloración disruptiva confunde insectos. Tamaño diminuto sin reservas hídricas. Requiere humedad sobre 85%; macetas de plástico son más seguras."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum saltatorium var. albociliatum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Known as 'The Dancing Bulbophyllum'. White hairs on lip act as aerodynamic sails, causing movement in air currents. Fragrance of jasmine and rose. Constant hydration, no winter rest."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Conocida como 'El Bulbophyllum Danzante'. Pelos blancos en el labelo actúan como velas, moviéndose con el aire. Aroma a jazmín y rosa. Hidratación constante, sin descanso invernal."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum inacootesiae"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Described in 2016. Endemic to Bukidnon, Mindanao (1,300-1,500m). Fragrance of fresh roses. Intermediate-to-cool regime. Rapid drainage while keeping roots damp is essential."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Descrita en 2016. Endémica de Bukidnon, Mindanao (1,300-1,500 m). Aroma a rosas frescas. Régimen intermedio a frío. Drenaje rápido sin secar las raíces es esencial."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum treschii"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Described in 2012. Massively elongated lateral sepals. High metabolic cost of flowering. pH 5.8 irrigation is critical for nutrient uptake and full potential."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Descrita en 2012. Sépalos laterales masivamente alargados. Alto costo metabólico de floración. Riego a pH 5.8 es crítico para absorber nutrientes y alcanzar su potencial."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum retusiusculum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Widespread Asian species. Name refers to notched leaf apex. Inflorescences form fan-like shapes. Shallow roots; keep in 3,000-5,000 foot-candle range to avoid evaporation."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Especie asiática extendida. El nombre refiere al ápice de la hoja con muesca. Inflorescencias en forma de abanico. Raíces superficiales; mantener en 3,000-5,000 bujías-pie para evitar evaporación."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum odontopetalum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Name means 'toothed petals'. Serrations provide grip for pollinators. High metabolic load from creeping rhizome. Requires plastic pots and 0.6 cm water tray method."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"El nombre significa 'pétalos dentados'. Las estrías dan agarre a los polinizadores. Alta carga metabólica del rizoma. Requiere macetas de plástico y método de bandeja con 0.6 cm de agua."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum maquilingense"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Endemic to the Philippines (0-1,000m). Named after Mount Makiling. Hot grower; thrives at 32°C. Needs massive daily watering during active growth."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Endémica de Filipinas (0-1,000 m). Nombrada por el Monte Makiling. Crecimiento cálido; prospera a 32°C. Necesita riegos masivos diarios en crecimiento activo."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum weberi"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Produces neon reddish-orange umbels. Shift away from fly pollination toward birds or butterflies. Sensitive roots; requires airy perlite-sphagnum mix for drainage."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Produce umbelas naranja rojizo neón. Evolución hacia polinización por aves o mariposas. Raíces sensibles; requiere mezcla aireada de perlita y sphagnum para drenaje."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum trongquyetii"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Described in 2020 in Vietnam. Massive vegetative scale compared to relatives. Petals are nearly invisible. Needs wide, shallow slat baskets due to aggressive habit."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Descrita en 2020 en Vietnam. Escala vegetativa masiva comparada con parientes. Pétalos casi invisibles. Necesita cestas de listones anchas por su hábito agresivo."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum tricanaliferum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Name means 'bearing three channels'. Deep grooves on pseudobulbs act as gutters for tropical rain. Responds to the 'more water longer' philosophy in plastic pots."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"El nombre significa 'que lleva tres canales'. Surcos profundos actúan como canaletas para la lluvia tropical. Responde a la filosofía 'más agua por más tiempo' en macetas de plástico."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum clandestinum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Name means 'hidden' or 'secretive'. Tiny flowers remain against the rhizome, often buried. Indicates ant pollination. Avoid overhead watering to protect hidden blooms."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"El nombre significa 'oculto'. Flores diminutas contra el rizoma, a menudo enterradas. Indica polinización por hormigas. Evitar riego por encima para proteger las flores ocultas."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum chrysendetum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Mini-miniature endemic to Leyte, Philippines (600m). Comical pear-shaped pseudobulbs. Requires 75%+ humidity and live sphagnum top-dressing for a micro-blanket of vapor."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Mini-miniatura endémica de Leyte, Filipinas (600 m). Pseudobulbos en forma de pera. Requiere humedad sobre 75% y cobertura de sphagnum vivo para crear una manta de vapor."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum fascinator var. hampaliana"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Emerald-green base with dark purple spots. Emits foul odor of raw garbage to attract saprophytic flies. Intermediate-to-warm grower. Scent is overwhelming in enclosed spaces."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Base verde esmeralda con manchas púrpura oscuro. Emite olor fétido a basura para atraer moscas. Crecimiento intermedio a cálido. El aroma es abrumador en espacios cerrados."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum maxillare"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Name refers to 'jaw-bone'. Mechanical structure mimics gaping jaws of a predator. Trap design directs insects to the column. Needs high light (15,000-20,000 lux)."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"El nombre refiere a 'mandíbula'. Estructura mecánica imita fauces de depredador. Diseño de trampa dirige insectos a la columna. Necesita mucha luz (15,000-20,000 lux)."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum sanguineopunctatum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Name means 'blood-spotted'. Precise nectar guides mimic diseased matter. Fine roots are susceptible to chemical burn. Flush substrate with pure rainwater regularly."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"El nombre significa 'moteado de sangre'. Guías de néctar imitan materia enferma. Raíces finas susceptibles a quemaduras químicas. Lavar sustrato con agua pura regularmente."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum saurocephalum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Name means 'lizard head'. Swollen, fleshy rachis resembles reptile scales. Rachis acts as water reservoir. Benefits from weekly diluted organic nitrogen (fish emulsion)."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"El nombre significa 'cabeza de lagarto'. Raquis carnoso imita escamas de reptil. El raquis sirve de depósito de agua. Se beneficia de nitrógeno orgánico semanal (emulsión de pescado)."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum fascinator"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Wild-type parent. Concentrated odor of decaying meat or garbage. Sapromyiophilous pollination. Rapid warm grower; requires large volumes of 50:50 sphagnum matrix."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Padre de tipo silvestre. Olor concentrado a carne podrida o basura. Polinización sapromiofílica. Crecimiento cálido rápido; requiere volúmenes grandes de matriz 50:50."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum 'Sprucei'"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Horticultural moniker named after Richard Spruce. Notoriously thirsty plants. Brief droughts can stall pseudobulb generation for an entire year. Follow the 'water abundantly' doctrine."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Apodo hortícola por Richard Spruce. Plantas notoriamente sedientas. Sequías breves pueden detener la generación de bulbos por un año. Seguir la doctrina de 'regar abundantemente'."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum corolliferum var. atropurpureum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Sumatran miniature endemic. Dark black-purple color absorbs thermal energy in cool fogs. High demand for 80%+ humidity. Excellent candidate for tech-heavy terrariums."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Miniatura endémica de Sumatra. Color negro-púrpura absorbe energía térmica en nieblas frías. Alta demanda de humedad (80%+). Excelente para terrarios de alta tecnología."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum baileyi"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Native to Australia and New Guinea. Aggressive climbing rhizome. Pleasant fruity scent (nectar-seeking pollinators). Requires large wooden slat baskets and bright speckled light."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Nativa de Australia y Nueva Guinea. Rizoma trepador agresivo. Aroma frutal agradable (polinizadores de néctar). Requiere cestas grandes de madera y luz brillante moteada."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum membranifolium"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Thin 'membranous' leaves lack waxy cuticle. Zero defense against rapid dehydration. Requires shielded plastic pots with water reservoirs to prevent instant crinkling."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Hojas membranosas delgadas sin cutícula cerosa. Sin defensa contra deshidratación rápida. Requiere macetas protegidas con depósitos de agua para evitar marchitamiento."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum forrestii"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Forms perfect radial daisy-like umbels. High energy demand for flowering. pH 5.8 water and weak MSU-style fertilizer recommended to prevent bloom abortion."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Forma umbelas radiales como margaritas. Alta demanda energética para florar. Agua a pH 5.8 y fertilizante estilo MSU recomendados para evitar aborto de flores."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum longiflorum (Spotted Form)"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Spans Africa, Madagascar, Asia, and Australia. Known as 'Pale Umbrella Orchid'. Extreme environmental adaptability. Thrives in stagnant heat (24°C-32°C) and continuous moisture."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Abarca África, Madagascar, Asia y Australia. Conocida como 'Orquídea Paraguas Pálido'. Adaptabilidad ambiental extrema. Prospera con calor (24°C-32°C) y humedad continua."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum maximum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"African giant. Severely swollen, leaf-like rachis magnified to 'maximum' proportions. Standard pots fail; requires aggressive mounting on large cork or tree-fern slabs."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Gigante africana. Raquis aplanado y grande en proporciones 'máximas'. Macetas estándar fallan; requiere montaje en placas grandes de corcho o helecho arborescente."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum vaginatum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Mop-like inflorescence with fireworks effect. Aggressive grower; can multiply from 3 to 14 pseudobulbs in one year with intense moisture and high nutrition."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Inflorescencia tipo fregona con efecto fuegos artificiales. Crecimiento agresivo; puede pasar de 3 a 14 bulbos en un año con mucha humedad y nutrición."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum rothschildianum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"High-altitude titan (2,130m). Parent of 'Elizabeth Ann'. Large red-striped flowers with peach or decaying scent. Requires sharp nocturnal cooling (6-8°C) to bloom."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Titán de gran altitud (2,130 m). Padre de 'Elizabeth Ann'. Flores grandes con rayas rojas y aroma a melocotón o podrido. Requiere enfriamiento nocturno (6-8°C) para florar."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum fenestratum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Name means 'windowed'. Fused sepals have microscopic gaps acting as lightboxes. Obligate shade lover; requires hand-shadow test borders to be almost entirely blurred."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"El nombre significa 'con ventanas'. Sépalos fusionados tienen huecos microscópicos que actúan como cajas de luz. Amante de la sombra; requiere sombra muy borrosa."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>},</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>{</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>name: </span><span class="s2">"Bulbophyllum grandiflorum"</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>en: </span><span class="s2">"Massive species from New Guinea. Huge dorsal sepal acts as an aerodynamic canopy to funnel scents. Requires absolute root hydration via water-tray method to maintain turgor."</span><span class="s5">,</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>es: </span><span class="s2">"Especie masiva de Nueva Guinea. Sépalo dorsal gigante sirve de dosel para canalizar aromas. Requiere hidratación absoluta para mantener la turgencia floral."</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span>];</span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> filteredTaxa = taxa.filter(t =&gt;<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>t.name.toLowerCase().includes(searchTerm.toLowerCase())</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span>);</span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">if</span><span class="s2"> (selectedTaxon) {</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s1">return</span><span class="s2"> (</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">      </span>&lt;div className=</span><span class="s2">"min-h-screen bg-slate-50 p-4 md:p-8 font-sans text-slate-800"</span><span class="s5">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>&lt;div className=</span><span class="s4">"max-w-4xl mx-auto"</span><span class="s2">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;button<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>onClick={() =&gt; setSelectedTaxon(</span><span class="s1">null</span><span class="s2">)}</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span>className=</span><span class="s2">"flex items-center gap-2 text-emerald-700 hover:text-emerald-800 font-semibold mb-6 transition-colors"</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>&lt;</span><span class="s3">ChevronLeft</span><span class="s2"> size={</span><span class="s7">20</span><span class="s2">} /&gt; </span><span class="s3">Regresar</span><span class="s2"> al men</span><span class="s8">ú</span><span class="s2"> principal / </span><span class="s3">Back</span><span class="s2"> to menu</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;/button&gt;</span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span>&lt;div className=</span><span class="s2">"bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200"</span><span class="s5">&gt;</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span>&lt;div className=</span><span class="s2">"bg-emerald-700 p-6 text-white"</span><span class="s5">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>&lt;h1 className=</span><span class="s4">"text-3xl font-bold italic"</span><span class="s2">&gt;{selectedTaxon.name}&lt;/h1&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>&lt;div className=</span><span class="s4">"p-6 space-y-8"</span><span class="s2">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>&lt;div className=</span><span class="s4">"grid md:grid-cols-2 gap-8"</span><span class="s2">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;section className=</span><span class="s4">"space-y-4"</span><span class="s2">&gt;</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">                  </span>&lt;div className=</span><span class="s2">"flex items-center gap-2 text-emerald-700 border-b border-emerald-100 pb-2"</span><span class="s5">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                    </span>&lt;</span><span class="s3">Info</span><span class="s2"> size={</span><span class="s7">20</span><span class="s2">} /&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                    </span>&lt;h2 className=</span><span class="s4">"text-xl font-bold"</span><span class="s2">&gt;</span><span class="s3">Informaci</span><span class="s8">ó</span><span class="s2">n </span><span class="s3">Bot</span><span class="s8">á</span><span class="s2">nica&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">                  </span>&lt;p className=</span><span class="s2">"text-slate-700 leading-relaxed text-sm italic mb-2"</span><span class="s5">&gt;</span><span class="s3">Espa</span><span class="s8">ñ</span><span class="s5">ol:&lt;/p&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;p className=</span><span class="s4">"text-slate-800 leading-relaxed mb-6"</span><span class="s2">&gt;{selectedTaxon.es}&lt;/p&gt;</span></p>
+<p class="p3"><span class="s2"><span class="Apple-converted-space">                  </span></span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">                  </span>&lt;p className=</span><span class="s2">"text-slate-700 leading-relaxed text-sm italic mb-2"</span><span class="s5">&gt;</span><span class="s3">English</span><span class="s5">:&lt;/p&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;p className=</span><span class="s4">"text-slate-800 leading-relaxed"</span><span class="s2">&gt;{selectedTaxon.en}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;/section&gt;</span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;section className=</span><span class="s4">"space-y-4"</span><span class="s2">&gt;</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">                  </span>&lt;div className=</span><span class="s2">"flex items-center gap-2 text-emerald-700 border-b border-emerald-100 pb-2"</span><span class="s5">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                    </span>&lt;</span><span class="s3">Droplets</span><span class="s2"> size={</span><span class="s7">20</span><span class="s2">} /&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                    </span>&lt;h2 className=</span><span class="s4">"text-xl font-bold"</span><span class="s2">&gt;</span><span class="s3">Gu</span><span class="s8">í</span><span class="s2">a de </span><span class="s3">Cultivo</span><span class="s2"> / </span><span class="s3">Care</span><span class="s2">&lt;/h2&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</span></p>
+<p class="p3"><span class="s2"><span class="Apple-converted-space">                  </span></span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;div className=</span><span class="s4">"space-y-4"</span><span class="s2">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                    </span>{generalCare.es.map((item, idx) =&gt; (</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                      </span>&lt;div key={item.id} className=</span><span class="s4">"bg-slate-50 p-4 rounded-xl border border-slate-100"</span><span class="s2">&gt;</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">                        </span>&lt;div className=</span><span class="s2">"flex items-center gap-3 mb-2 text-emerald-800"</span><span class="s5">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                          </span>{item.icon}</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                          </span>&lt;span className=</span><span class="s4">"font-bold text-sm uppercase tracking-wider"</span><span class="s2">&gt;{item.title}&lt;/span&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                        </span>&lt;p className=</span><span class="s4">"text-sm text-slate-700 mb-2"</span><span class="s2">&gt;{item.content}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                        </span>&lt;div className=</span><span class="s4">"pt-2 border-t border-slate-200"</span><span class="s2">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                          </span>&lt;p className=</span><span class="s4">"text-xs italic text-slate-500 mb-1"</span><span class="s2">&gt;{generalCare.en[idx].title}:&lt;/p&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                          </span>&lt;p className=</span><span class="s4">"text-xs text-slate-600"</span><span class="s2">&gt;{generalCare.en[idx].content}&lt;/p&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                    </span>))}</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>&lt;/section&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>);</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span>}</span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<p class="p5"><span class="s5"><span class="Apple-converted-space">  </span></span><span class="s2">return</span><span class="s5"> (</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">    </span>&lt;div className=</span><span class="s2">"min-h-screen bg-slate-50 p-4 md:p-8 font-sans text-slate-800"</span><span class="s5">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>&lt;div className=</span><span class="s4">"max-w-6xl mx-auto"</span><span class="s2">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>&lt;header className=</span><span class="s4">"text-center mb-12"</span><span class="s2">&gt;</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span>&lt;h1 className=</span><span class="s2">"text-4xl md:text-5xl font-black text-emerald-900 mb-4 tracking-tight"</span><span class="s5">&gt;</span></p>
+<p class="p2"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s2">BULBOPHYLLUM</span><span class="s5"> </span><span class="s2">EXPLORER</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;/h1&gt;</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span>&lt;p className=</span><span class="s2">"text-emerald-700 font-medium text-lg"</span><span class="s5">&gt;</span></p>
+<p class="p2"><span class="s5"><span class="Apple-converted-space">            </span></span><span class="s2">An</span><span class="s8">á</span><span class="s5">lisis </span><span class="s2">Bot</span><span class="s8">á</span><span class="s5">nico y </span><span class="s2">Hort</span><span class="s8">í</span><span class="s5">cola </span><span class="s2">Exhaustivo</span><span class="s5"> / </span><span class="s2">Comprehensive</span><span class="s5"> </span><span class="s2">Analysis</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;/p&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>&lt;/header&gt;</span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">        </span>&lt;div className=</span><span class="s2">"relative max-w-xl mx-auto mb-12"</span><span class="s5">&gt;</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span>&lt;</span><span class="s3">Search</span><span class="s5"> className=</span><span class="s2">"absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"</span><span class="s5"> size={</span><span class="s7">20</span><span class="s5">} /&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;input<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s1">type</span><span class="s2">=</span><span class="s4">"text"</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span>placeholder=</span><span class="s2">"Buscar especie o híbrido... / Search..."</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">            </span>className=</span><span class="s2">"w-full pl-12 pr-4 py-4 rounded-full bg-white shadow-lg border-none focus:ring-2 focus:ring-emerald-500 text-lg transition-all"</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>value={searchTerm}</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>onChange={(e) =&gt; setSearchTerm(e.target.value)}</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>/&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">        </span>&lt;div className=</span><span class="s2">"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"</span><span class="s5">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>{filteredTaxa.map((taxon, index) =&gt; (</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>&lt;button</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>key={index}</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>onClick={() =&gt; setSelectedTaxon(taxon)}</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">              </span>className=</span><span class="s2">"bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-left hover:shadow-xl hover:border-emerald-300 hover:-translate-y-1 transition-all group"</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>&gt;</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">              </span>&lt;h3 className=</span><span class="s2">"text-xl font-bold italic text-slate-900 group-hover:text-emerald-700 transition-colors"</span><span class="s5">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>{taxon.name}</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>&lt;/h3&gt;</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">              </span>&lt;p className=</span><span class="s2">"text-slate-500 text-sm mt-2 line-clamp-2"</span><span class="s5">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>{taxon.es}</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>&lt;/p&gt;</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">              </span>&lt;div className=</span><span class="s2">"mt-4 flex items-center text-emerald-600 text-xs font-bold uppercase tracking-widest"</span><span class="s5">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s3">Ver</span><span class="s2"> </span><span class="s3">Detalles</span><span class="s2"> / </span><span class="s3">View</span><span class="s2"> </span><span class="s3">Details</span><span class="s2"> </span><span class="s8">→</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span>&lt;/button&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>))}</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>&lt;/div&gt;</span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>{filteredTaxa.length === </span><span class="s7">0</span><span class="s2"> &amp;&amp; (</span></p>
+<p class="p4"><span class="s5"><span class="Apple-converted-space">          </span>&lt;div className=</span><span class="s2">"text-center py-20 text-slate-400"</span><span class="s5">&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s3">No</span><span class="s2"> se encontraron resultados para tu b</span><span class="s8">ú</span><span class="s2">squeda.</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span>)}</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>&lt;/div&gt;</span></p>
+<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span>);</span></p>
+<p class="p1"><span class="s2">};</span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<p class="p2"><span class="s1">export</span><span class="s5"> </span><span class="s1">default</span><span class="s5"> </span><span class="s2">BulbophyllumApp</span><span class="s5">;</span></p>
+</body>
+</html>
