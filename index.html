@@ -10,23 +10,28 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
         body { font-family: 'Inter', sans-serif; }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="bg-slate-50">
     <div id="root"></div>
 
     <script type="text/babel">
-        // Extraemos los componentes de React
         const { useState, useEffect } = React;
 
-        // Componente de Icono para Lucide (Adaptación para navegador)
-        const Icon = ({ name, className = "w-5 h-5" }) => {
+        // Componente para renderizar iconos de Lucide dinámicamente
+        const LucideIcon = ({ name, size = 20, className = "" }) => {
             useEffect(() => {
                 lucide.createIcons();
             }, [name]);
-            return <i data-lucide={name} className={className}></i>;
+            return <i data-lucide={name} style={{ width: size, height: size }} className={className}></i>;
         };
 
         const BulbophyllumApp = () => {
@@ -51,54 +56,54 @@
             };
 
             const taxa = [
-                { name: "Bulbophyllum mirum", en: "Described by Johannes Jacobus Smith in 1906. Native to Peninsular Thailand, Sumatra, Borneo, Java, Bali, and Flores.", es: "Descrita por Johannes Jacobus Smith en 1906. Nativa de Tailandia peninsular, Sumatra, Borneo, Java, Bali y Flores." },
-                { name: "Bulbophyllum speciosum", en: "Described by Rudolf Schlechter in 1912. Originates from forests of Papua New Guinea (600-1,200m).", es: "Descrita por Rudolf Schlechter en 1912. Originaria de los bosques de Papúa Nueva Guinea (600-1,200 m)." },
-                { name: "Bulbophyllum translucidum", en: "Described in 2016. Endemic to the Philippines (Dinagat, Leyte, Mindanao, Samar).", es: "Descrita en 2016. Endémica de Filipinas (Dinagat, Leyte, Mindanao, Samar)." },
-                { name: "Bulbophyllum Elizabeth Ann 'Buckleberry'", en: "Hybrid of B. longissimum and B. rothschildianum. Registered in 1969. Awarded FCC and CCE by AOS.", es: "Híbrido de B. longissimum y B. rothschildianum. Registrado en 1969. Premiado con FCC y CCE por la AOS." },
-                { name: "Bulbophyllum macranthum", en: "Described by John Lindley. Wide distribution in Southeast Asia. Large, fleshy flowers with a clove-like scent.", es: "Descrita por John Lindley. Amplia distribución en el sudeste asiático. Flores grandes y carnosas con aroma a clavo." },
-                { name: "Bulbophyllum elevatopunctatum", en: "Described by J.J. Smith. Features raised, blister-like dots on flowers. Mimics biological debris.", es: "Descrita por J.J. Smith. Presenta puntos elevados tipo ampolla en las flores. Imita desechos biológicos." },
-                { name: "Bulbophyllum bolsteri", en: "Named by Oakes Ames. Endemic to the Philippines. Named after field collectors of the early 20th century.", es: "Nombrada por Oakes Ames. Endémica de Filipinas. Honra a recolectores de principios del siglo XX." },
-                { name: "Bulbophyllum crassipes", en: "Documented by Joseph Dalton Hooker in 1896. Found in China, Bhutan, India, Bangladesh, and Myanmar.", es: "Documentada por Joseph Dalton Hooker en 1896. Se encuentra en China, Bután, India, Bangladesh y Myanmar." },
-                { name: "Bulbophyllum subcubicum", en: "Originally described by J.J. Smith in 1913. Pseudobulbs develop cubic shapes. Demands high ambient humidity.", es: "Descrita originalmente por J.J. Smith en 1913. Los pseudobulbos desarrollan formas cúbicas. Exige alta humedad ambiental." },
-                { name: "Bulbophyllum falcatum", en: "African species revised by Reichenbach in 1861. Flattened rachis mimics a sickle.", es: "Especie africana revisada por Reichenbach en 1861. Raquis aplanado imita una hoz." },
-                { name: "Bulbophyllum cephalophorum", en: "Described by Garay, Hamer, and Siegerist. Name means 'head-bearing'. Clustered flowers mimic a single decaying head.", es: "Descrita por Garay, Hamer y Siegerist. El nombre significa 'que lleva cabeza'. Flores agrupadas imitan una cabeza en descomposición." },
-                { name: "Bulbophyllum thaiorum", en: "High-altitude cloud forest epiphyte (600-2,000m). Features papillose lateral sepals.", es: "Epífita de bosque nuboso de gran altitud (600-2,000 m). Posee sépalos laterales papilosos." },
-                { name: "Bulbophyllum pecten-veneris", en: "Name means 'Venus's comb'. Parallel lateral sepals resemble comb teeth. Fine root system.", es: "El nombre significa 'peine de Venus'. Sépalos laterales paralelos parecen dientes de un peine. Raíces finas." },
-                { name: "Bulbophyllum purpurascens", en: "Described by Teijsmann and Binnendijk. Name means 'becoming purple'. Photoprotective mechanism using anthocyanins.", es: "Descrita por Teijsmann y Binnendijk. El nombre significa 'volviéndose púrpura'. Mecanismo fotoprotector con antocianinas." },
-                { name: "Bulbophyllum auratum flavum", en: "Xanthic mutation of B. auratum. Lacks red/purple pigments; flowers are pure yellow.", es: "Mutación xántica de B. auratum. Carece de pigmentos rojos/púrpuras; flores amarillo puro." },
-                { name: "Bulbophyllum nitidum", en: "Described by Schlechter from New Guinea. Name means 'shining' or 'glossy'.", es: "Descrita por Schlechter en Nueva Guinea. El nombre significa 'brillante'." },
-                { name: "Bulbophyllum infundibuliforme", en: "Leaves form a watertight biological funnel. Traps rain and debris to feed the roots.", es: "Hojas forman un embudo biológico hermético. Atrapa lluvia y desechos para alimentar las raíces." },
-                { name: "Bulbophyllum vietnamense", en: "Endemic to Vietnam highlands. Bathed in freezing cloud fogs. Mandatory nocturnal temperature drop.", es: "Endémica de las tierras altas de Vietnam. Bañada en nieblas heladas. Caída nocturna obligatoria." },
-                { name: "Bulbophyllum mucronatum alagense", en: "Found in Philippines and Sulawesi (1,400-1,600m). Sharp spine-like point at leaf apex.", es: "Se encuentra en Filipinas y Sulawesi (1,400-1,600 m). Punta afilada en el ápice de la hoja." },
-                { name: "Bulbophyllum lasiochilum", en: "Fragrance mimics strawberry candy. Deviation from the genus's typical foul odors.", es: "Fragancia imita caramelos de fresa. Diferente a los olores fétidos típicos del género." },
-                { name: "Bulbophyllum pardalotum", en: "Name means 'leopard-spotted'. Advanced disruptive coloration confuses insects.", es: "El nombre significa 'manchado como leopardo'. Coloración disruptiva confunde insectos." },
-                { name: "Bulbophyllum saltatorium var. albociliatum", en: "Known as 'The Dancing Bulbophyllum'. White hairs on lip act as aerodynamic sails.", es: "Conocida como 'El Bulbophyllum Danzante'. Pelos blancos en el labelo actúan como velas." },
-                { name: "Bulbophyllum inacootesiae", en: "Described in 2016. Endemic to Bukidnon, Mindanao (1,300-1,500m). Fragrance of fresh roses.", es: "Descrita en 2016. Endémica de Bukidnon, Mindanao (1,300-1,500 m). Aroma a rosas frescas." },
-                { name: "Bulbophyllum treschii", en: "Described in 2012. Massively elongated lateral sepals. High metabolic cost of flowering.", es: "Descrita en 2012. Sépalos laterales masivamente alargados. Alto costo metabólico de floración." },
-                { name: "Bulbophyllum retusiusculum", en: "Widespread Asian species. Name refers to notched leaf apex. Inflorescences form fan-like shapes.", es: "Especie asiática extendida. El nombre refiere al ápice de la hoja con muesca. Inflorescencias en forma de abanico." },
-                { name: "Bulbophyllum odontopetalum", en: "Name means 'toothed petals'. Serrations provide grip for pollinators.", es: "El nombre significa 'pétalos dentados'. Las estrías dan agarre a los polinizadores." },
-                { name: "Bulbophyllum maquilingense", en: "Endemic to the Philippines (0-1,000m). Named after Mount Makiling. Hot grower.", es: "Endémica de Filipinas (0-1,000 m). Nombrada por el Monte Makiling. Crecimiento cálido." },
-                { name: "Bulbophyllum weberi", en: "Produces neon reddish-orange umbels. Shift away from fly pollination toward birds or butterflies.", es: "Produce umbelas naranja rojizo neón. Evolución hacia polinización por aves o mariposas." },
-                { name: "Bulbophyllum trongquyetii", en: "Described in 2020 in Vietnam. Massive vegetative scale compared to relatives.", es: "Descrita en 2020 en Vietnam. Escala vegetativa masiva comparada con parientes." },
-                { name: "Bulbophyllum tricanaliferum", en: "Name means 'bearing three channels'. Deep grooves on pseudobulbs act as gutters.", es: "El nombre significa 'que lleva tres canales'. Surcos profundos actúan como canaletas." },
-                { name: "Bulbophyllum clandestinum", en: "Name means 'hidden' or 'secretive'. Tiny flowers remain against the rhizome.", es: "El nombre significa 'oculto'. Flores diminutas contra el rizoma, a menudo enterradas." },
-                { name: "Bulbophyllum chrysendetum", en: "Mini-miniature endemic to Leyte, Philippines (600m). Comical pear-shaped pseudobulbs.", es: "Mini-miniatura endémica de Leyte, Filipinas (600 m). Pseudobulbos en forma de pera." },
-                { name: "Bulbophyllum fascinator var. hampaliana", en: "Emerald-green base with dark purple spots. Emits foul odor of raw garbage.", es: "Base verde esmeralda con manchas púrpura oscuro. Emite olor fétido a basura." },
-                { name: "Bulbophyllum maxillare", en: "Name refers to 'jaw-bone'. Mechanical structure mimics gaping jaws of a predator.", es: "El nombre refiere a 'mandíbula'. Estructura mecánica imita fauces de depredador." },
-                { name: "Bulbophyllum sanguineopunctatum", en: "Name means 'blood-spotted'. Precise nectar guides mimic diseased matter.", es: "El nombre significa 'moteado de sangre'. Guías de néctar imitan materia enferma." },
-                { name: "Bulbophyllum saurocephalum", en: "Name means 'lizard head'. Swollen, fleshy rachis resembles reptile scales.", es: "El nombre significa 'cabeza de lagarto'. Raquis carnoso imita escamas de reptil." },
-                { name: "Bulbophyllum fascinator", en: "Wild-type parent. Concentrated odor of decaying meat or garbage. Sapromyiophilous pollination.", es: "Padre de tipo silvestre. Olor concentrado a carne podrida o basura. Polinización sapromiofílica." },
-                { name: "Bulbophyllum 'Sprucei'", en: "Horticultural moniker named after Richard Spruce. Notoriously thirsty plants.", es: "Apodo hortícola por Richard Spruce. Plantas notoriamente sedientas." },
-                { name: "Bulbophyllum corolliferum var. atropurpureum", en: "Sumatran miniature endemic. Dark black-purple color absorbs thermal energy.", es: "Miniatura endémica de Sumatra. Color negro-púrpura absorbe energía térmica en nieblas frías." },
-                { name: "Bulbophyllum baileyi", en: "Native to Australia and New Guinea. Aggressive climbing rhizome. Pleasant fruity scent.", es: "Nativa de Australia y Nueva Guinea. Rizoma trepador agresivo. Aroma frutal agradable." },
-                { name: "Bulbophyllum membranifolium", en: "Thin 'membranous' leaves lack waxy cuticle. Zero defense against rapid dehydration.", es: "Hojas membranosas delgadas sin cutícula cerosa. Sin defensa contra deshidratación rápida." },
-                { name: "Bulbophyllum forrestii", en: "Forms perfect radial daisy-like umbels. High energy demand for flowering.", es: "Forma umbelas radiales como margaritas. Alta demanda energética para florar." },
-                { name: "Bulbophyllum longiflorum", en: "Spans Africa, Madagascar, Asia, and Australia. Known as 'Pale Umbrella Orchid'.", es: "Abarca África, Madagascar, Asia y Australia. Conocida como 'Orquídea Paraguas Pálido'." },
-                { name: "Bulbophyllum maximum", en: "African giant. Severely swollen, leaf-like rachis magnified to 'maximum' proportions.", es: "Gigante africana. Raquis aplanado y grande en proporciones 'máximas'." },
-                { name: "Bulbophyllum vaginatum", en: "Mop-like inflorescence with fireworks effect. Aggressive grower.", es: "Inflorescencia tipo fregona con efecto fuegos artificiales. Crecimiento agresivo." },
-                { name: "Bulbophyllum rothschildianum", en: "High-altitude titan (2,130m). Parent of 'Elizabeth Ann'. Large red-striped flowers.", es: "Titán de gran altitud (2,130 m). Padre de 'Elizabeth Ann'. Flores grandes con rayas rojas." },
-                { name: "Bulbophyllum fenestratum", en: "Name means 'windowed'. Fused sepals have microscopic gaps acting as lightboxes.", es: "El nombre significa 'con ventanas'. Sépalos fusionados tienen huecos microscópicos." },
-                { name: "Bulbophyllum grandiflorum", en: "Massive species from New Guinea. Huge dorsal sepal acts as an aerodynamic canopy.", es: "Especie masiva de Nueva Guinea. Sépalo dorsal gigante sirve de dosel." }
+                { name: "Bulbophyllum mirum", en: "Described by Johannes Jacobus Smith in 1906. Native to Peninsular Thailand, Sumatra, Borneo, Java, Bali, and Flores. Creeping rhizome with 1-3 cm spacing. The name means 'wonderful' or 'strange'. Cultivate in intermediate-to-warm temperatures in wide, shallow baskets with 50:50 sphagnum and perlite.", es: "Descrita por Johannes Jacobus Smith en 1906. Nativa de Tailandia peninsular, Sumatra, Borneo, Java, Bali y Flores. Rizoma rastrero con espacio de 1-3 cm. El nombre significa 'maravilloso' o 'extraño'. Cultivar en temperaturas intermedias a cálidas en cestas anchas con 50:50 sphagnum y perlita." },
+                { name: "Bulbophyllum speciosum", en: "Described by Rudolf Schlechter in 1912. Originates from forests of Papua New Guinea (600-1,200m). Known as 'The Outstanding Bulbophyllum'. Produces a solitary flower up to 6.7 cm across. Requires hyper-hydrated environments and intense late-afternoon misting.", es: "Descrita por Rudolf Schlechter en 1912. Originaria de los bosques de Papúa Nueva Guinea (600-1,200 m). Conocida como 'El Bulbophyllum Excepcional'. Produce una flor solitaria de hasta 6.7 cm de ancho. Requiere ambientes hiperhidratados y nebulización intensa por la tarde." },
+                { name: "Bulbophyllum translucidum", en: "Described in 2016. Endemic to the Philippines (Dinagat, Leyte, Mindanao, Samar). Inhabits lowland forests at 321m. Flowers have glass-like transparency. Requires strict hot-growing conditions, intense shade, and constant moisture.", es: "Descrita en 2016. Endémica de Filipinas (Dinagat, Leyte, Mindanao, Samar). Habita bosques de tierras bajas a 321 m. Flores con transparencia similar al vidrio. Requiere condiciones de crecimiento cálido, sombra intensa y humedad constante." },
+                { name: "Bulbophyllum Elizabeth Ann 'Buckleberry'", en: "Hybrid of B. longissimum and B. rothschildianum. Registered in 1969. Awarded FCC and CCE by AOS. Trailing lateral sepals with red spotting. Requires wide, shallow pans and heavy feeding during growth.", es: "Híbrido de B. longissimum y B. rothschildianum. Registrado en 1969. Premiado con FCC y CCE por la AOS. Sépalos laterales colgantes con moteado rojo. Requiere bandejas anchas y alimentación pesada durante el crecimiento." },
+                { name: "Bulbophyllum macranthum", en: "Described by John Lindley. Wide distribution in Southeast Asia. Large, fleshy flowers with a clove-like scent. Aggressive creeping rhizome requires tree-fern mounts or large horizontal baskets.", es: "Descrita por John Lindley. Amplia distribución en el sudeste asiático. Flores grandes y carnosas con aroma a clavo. Rizoma rastrero agresivo requiere montajes de helecho arborescente o cestas horizontales grandes." },
+                { name: "Bulbophyllum elevatopunctatum", en: "Described by J.J. Smith. Features raised, blister-like dots on flowers. Mimics biological debris. Intermediate-to-warm grower. Benefits from the shallow water tray technique.", es: "Descrita por J.J. Smith. Presenta puntos elevados tipo ampolla en las flores. Imita desechos biológicos. Crecimiento intermedio a cálido. Se beneficia de la técnica de bandeja de agua poco profunda." },
+                { name: "Bulbophyllum bolsteri", en: "Named by Oakes Ames. Endemic to the Philippines. Named after field collectors of the early 20th century. Lowland humid environment. Requires the 'POO' rule and 50:50 sphagnum-perlite mix.", es: "Nombrada por Oakes Ames. Endémica de Filipinas. Honra a recolectores de principios del siglo XX. Ambiente húmedo de tierras bajas. Requiere la regla 'POO' y mezcla 50:50 de sphagnum y perlita." },
+                { name: "Bulbophyllum crassipes", en: "Documented by Joseph Dalton Hooker in 1896. Found in China, Bhutan, India, Bangladesh, and Myanmar. Name means 'thick foot'. Swollen rhizome stores water for dry periods. Needs intermediate temperatures and bright, filtered light.", es: "Documentada por Joseph Dalton Hooker en 1896. Se encuentra en China, Bután, India, Bangladesh y Myanmar. El nombre significa 'pie grueso'. Rizoma hinchado almacena agua para periodos secos. Necesita temperaturas intermedias y luz brillante filtrada." },
+                { name: "Bulbophyllum subcubicum", en: "Originally described by J.J. Smith in 1913. Pseudobulbs develop cubic shapes. Demands high ambient humidity (85%+). Warm-to-hot grower. Rapidly shrivels if moisture drops.", es: "Descrita originalmente por J.J. Smith in 1913. Los pseudobulbos desarrollan formas cúbicas. Exige alta humedad ambiental (85%+). Crecimiento cálido a caliente. Se encoge rápido si baja la humedad." },
+                { name: "Bulbophyllum falcatum", en: "African species revised by Reichenbach in 1861. Flattened rachis mimics a sickle. Rachis performs secondary photosynthesis. Warm grower, tolerates lower light than Asian cousins.", es: "Especie africana revisada por Reichenbach en 1861. Raquis aplanado imita una hoz. El raquis realiza fotosíntesis secundaria. Crecimiento cálido, tolera menos luz que las especies asiáticas." },
+                { name: "Bulbophyllum cephalophorum", en: "Described by Garay, Hamer, and Siegerist. Name means 'head-bearing'. Clustered flowers mimic a single decaying head. Risk of Botrytis rot; requires high air circulation around flowers.", es: "Descrita por Garay, Hamer y Siegerist. El nombre significa 'que lleva cabeza'. Flores agrupadas imitan una cabeza en descomposición. Riesgo de pudrición por Botrytis; requiere alta circulación de aire en las flores." },
+                { name: "Bulbophyllum thaiorum", en: "High-altitude cloud forest epiphyte (600-2,000m). Features papillose lateral sepals. 'F. Red' form is highly prized. Requires cool-to-intermediate regime; sensitive to stagnant heat.", es: "Epífita de bosque nuboso de gran altitud (600-2,000 m). Posee sépalos laterales papilosos. La forma 'F. Red' es muy valorada. Requiere régimen frío a intermedio; sensible al calor estancado." },
+                { name: "Bulbophyllum pecten-veneris", en: "Name means 'Venus's comb'. Parallel lateral sepals resemble comb teeth. Fine root system; cannot survive 24 hours of desiccation. Supplemental organic feeding recommended.", es: "El nombre significa 'peine de Venus'. Sépalos laterales paralelos parecen dientes de un peine. Raíces finas; no soporta 24 horas de sequedad. Se recomienda alimentación orgánica suplementaria." },
+                { name: "Bulbophyllum purpurascens", en: "Described by Teijsmann and Binnendijk. Name means 'becoming purple'. Photoprotective mechanism using anthocyanins. Requires pH 5.8 water to ensure mineral availability for pigment production.", es: "Descrita por Teijsmann y Binnendijk. El nombre significa 'volviéndose púrpura'. Mecanismo fotoprotector con antocianinas. Requiere agua a pH 5.8 para asegurar minerales para los pigmentos." },
+                { name: "Bulbophyllum auratum flavum", en: "Xanthic mutation of B. auratum. Lacks red/purple pigments; flowers are pure yellow. Highly vulnerable to phototoxicity. Requires deeper shade and 75%+ humidity.", es: "Mutación xántica de B. auratum. Carece de pigmentos rojos/púrpuras; flores amarillo puro. Vulnerable a fototoxicidad. Requiere sombra profunda y humedad sobre el 75%." },
+                { name: "Bulbophyllum nitidum", en: "Described by Schlechter from New Guinea. Name means 'shining' or 'glossy'. Polished appearance acts as water barrier and UV deflector. Must grow in plastic pots with water trays.", es: "Descrita por Schlechter en Nueva Guinea. El nombre significa 'brillante'. Apariencia pulida actúa como barrera hídrica y deflector UV. Debe crecer en macetas de plástico con bandejas de agua." },
+                { name: "Bulbophyllum infundibuliforme", en: "Leaves form a watertight biological funnel. Traps rain and debris to feed the roots. Requires weekly diluted organic fertilizers directly into the root zone.", es: "Hojas forman un embudo biológico hermético. Atrapa lluvia y desechos para alimentar las raíces. Requiere fertilizantes orgánicos diluidos semanales directo a la raíz." },
+                { name: "Bulbophyllum vietnamense", en: "Endemic to Vietnam highlands. Bathed in freezing cloud fogs. Mandatory nocturnal temperature drop of 6°C to 8°C. Constant mechanical airflow needed to prevent crown rot.", es: "Endémica de las tierras altas de Vietnam. Bañada en nieblas heladas. Caída nocturna obligatoria de 6°C a 8°C. Flujo de aire constante para prevenir pudrición de corona." },
+                { name: "Bulbophyllum mucronatum alagense", en: "Found in Philippines and Sulawesi (1,400-1,600m). Sharp spine-like point at leaf apex. Cold mountainous origin; susceptible to heat stress above 35°C. Requires aluminized shade netting.", es: "Se encuentra en Filipinas y Sulawesi (1,400-1,600 m). Punta afilada en el ápice de la hoja. Origen montañoso frío; susceptible a estrés por calor sobre 35°C. Requiere malla de sombra aluminizada." },
+                { name: "Bulbophyllum lasiochilum", en: "Fragrance mimics strawberry candy. Deviation from the genus's typical foul odors. Vigorous and forgiving. Thrives in 50:50 sphagnum-perlite with weekly watering.", es: "Fragancia imita caramelos de fresa. Diferente a los olores fétidos típicos del género. Vigorosa y tolerante. Prospera en 50:50 sphagnum-perlita con riego semanal." },
+                { name: "Bulbophyllum pardalotum", en: "Name means 'leopard-spotted'. Advanced disruptive coloration confuses insects. Diminutive size with no moisture reserves. Requires 85%+ humidity; plastic pots are safest.", es: "El nombre significa 'manchado como leopardo'. Coloración disruptiva confunde insectos. Tamaño diminuto sin reservas hídricas. Requiere humedad sobre 85%; macetas de plástico son más seguras." },
+                { name: "Bulbophyllum saltatorium var. albociliatum", en: "Known as 'The Dancing Bulbophyllum'. White hairs on lip act as aerodynamic sails, causing movement in air currents. Fragrance of jasmine and rose. Constant hydration, no winter rest.", es: "Conocida como 'El Bulbophyllum Danzante'. Pelos blancos en el labelo actúan como velas, moviéndose con el aire. Aroma a jazmín y rosa. Hidratación constante, sin descanso invernal." },
+                { name: "Bulbophyllum inacootesiae", en: "Described in 2016. Endemic to Bukidnon, Mindanao (1,300-1,500m). Fragrance of fresh roses. Intermediate-to-cool regime. Rapid drainage while keeping roots damp is essential.", es: "Descrita en 2016. Endémica de Bukidnon, Mindanao (1,300-1,500 m). Aroma a rosas frescas. Régimen intermedio a frío. Drenaje rápido sin secar las raíces es esencial." },
+                { name: "Bulbophyllum treschii", en: "Described in 2012. Massively elongated lateral sepals. High metabolic cost of flowering. pH 5.8 irrigation is critical for nutrient uptake and full potential.", es: "Descrita en 2012. Sépalos laterales masivamente alargados. Alto costo metabólico de floración. Riego a pH 5.8 es crítico para absorber nutrientes y alcanzar su potencial." },
+                { name: "Bulbophyllum retusiusculum", en: "Widespread Asian species. Name refers to notched leaf apex. Inflorescences form fan-like shapes. Shallow roots; keep in 3,000-5,000 foot-candle range to avoid evaporation.", es: "Especie asiática extendida. El nombre refiere al ápice de la hoja con muesca. Inflorescencias en forma de abanico. Raíces superficiales; mantener en 3,000-5,000 bujías-pie para evitar evaporación." },
+                { name: "Bulbophyllum odontopetalum", en: "Name means 'toothed petals'. Serrations provide grip for pollinators. High metabolic load from creeping rhizome. Requires plastic pots and 0.6 cm water tray method.", es: "El nombre significa 'pétalos dentados'. Las estrías dan agarre a los polinizadores. Alta carga metabólica del rizoma. Requiere macetas de plástico y método de bandeja con 0.6 cm de agua." },
+                { name: "Bulbophyllum maquilingense", en: "Endemic to the Philippines (0-1,000m). Named after Mount Makiling. Hot grower; thrives at 32°C. Needs massive daily watering during active growth.", es: "Endémica de Filipinas (0-1,000 m). Nombrada por el Monte Makiling. Crecimiento cálido; prospera a 32°C. Necesita riegos masivos diarios en crecimiento activo." },
+                { name: "Bulbophyllum weberi", en: "Produces neon reddish-orange umbels. Shift away from fly pollination toward birds or butterflies. Sensitive roots; requires airy perlite-sphagnum mix for drainage.", es: "Produce umbelas naranja rojizo neón. Evolución hacia polinización por aves o mariposas. Raíces sensibles; requiere mezcla aireada de perlita y sphagnum para drenaje." },
+                { name: "Bulbophyllum trongquyetii", en: "Described in 2020 in Vietnam. Massive vegetative scale compared to relatives. Petals are nearly invisible. Needs wide, shallow slat baskets due to aggressive habit.", es: "Descrita en 2020 en Vietnam. Escala vegetativa masiva comparada con parientes. Pétalos casi invisibles. Necesita cestas de listones anchas por su hábito agresivo." },
+                { name: "Bulbophyllum tricanaliferum", en: "Name means 'bearing three channels'. Deep grooves on pseudobulbs act as gutters for tropical rain. Responds to the 'more water longer' philosophy in plastic pots.", es: "El nombre significa 'que lleva tres canales'. Surcos profundos actúan como canaletas para la lluvia tropical. Responde a la filosofía 'más agua por más tiempo' en macetas de plástico." },
+                { name: "Bulbophyllum clandestinum", en: "Name means 'hidden' or 'secretive'. Tiny flowers remain against the rhizome, often buried. Indicates ant pollination. Avoid overhead watering to protect hidden blooms.", es: "El nombre significa 'oculto'. Flores diminutas contra el rizoma, a menudo enterradas. Indica polinización por hormigas. Evitar riego por encima para proteger las flores ocultas." },
+                { name: "Bulbophyllum chrysendetum", en: "Mini-miniature endemic to Leyte, Philippines (600m). Comical pear-shaped pseudobulbs. Requires 75%+ humidity and live sphagnum top-dressing for a micro-blanket of vapor.", es: "Mini-miniatura endémica de Leyte, Filipinas (600 m). Pseudobulbos en forma de pera. Requiere humedad sobre 75% y cobertura de sphagnum vivo para crear una manta de vapor." },
+                { name: "Bulbophyllum fascinator var. hampaliana", en: "Emerald-green base with dark purple spots. Emits foul odor of raw garbage to attract saprophytic flies. Intermediate-to-warm grower. Scent is overwhelming in enclosed spaces.", es: "Base verde esmeralda con manchas púrpura oscuro. Emite olor fétido a basura para atraer moscas. Crecimiento intermedio a cálido. El aroma es abrumador en espacios cerrados." },
+                { name: "Bulbophyllum maxillare", en: "Name refers to 'jaw-bone'. Mechanical structure mimics gaping jaws of a predator. Trap design directs insects to the column. Needs high light (15,000-20,000 lux).", es: "El nombre refiere a 'mandíbula'. Estructura mecánica imita fauces de depredador. Diseño de trampa dirige insectos a la columna. Necesita mucha luz (15,000-20,000 lux)." },
+                { name: "Bulbophyllum sanguineopunctatum", en: "Name means 'blood-spotted'. Precise nectar guides mimic diseased matter. Fine roots are susceptible to chemical burn. Flush substrate with pure rainwater regularly.", es: "El nombre significa 'moteado de sangre'. Guías de néctar imitan materia enferma. Raíces finas susceptibles a quemaduras químicas. Lavar sustrato con agua pura regularmente." },
+                { name: "Bulbophyllum saurocephalum", en: "Name means 'lizard head'. Swollen, fleshy rachis resembles reptile scales. Rachis acts as water reservoir. Benefits from weekly diluted organic nitrogen (fish emulsion).", es: "El nombre significa 'cabeza de lagarto'. Raquis carnoso imita escamas de reptil. El raquis sirve de depósito de agua. Se beneficia de nitrógeno orgánico semanal (emulsión de pescado)." },
+                { name: "Bulbophyllum fascinator", en: "Wild-type parent. Concentrated odor of decaying meat or garbage. Sapromyiophilous pollination. Rapid warm grower; requires large volumes of 50:50 sphagnum matrix.", es: "Padre de tipo silvestre. Olor concentrado a carne podrida o basura. Polinización sapromiofílica. Crecimiento cálido rápido; requiere volúmenes grandes de matriz 50:50." },
+                { name: "Bulbophyllum 'Sprucei'", en: "Horticultural moniker named after Richard Spruce. Notoriously thirsty plants. Brief droughts can stall pseudobulb generation for an entire year. Follow the 'water abundantly' doctrine.", es: "Apodo hortícola por Richard Spruce. Plantas notoriamente sedientas. Sequías breves pueden detener la generación de bulbos por un año. Seguir la doctrina de 'regar abundantemente'." },
+                { name: "Bulbophyllum corolliferum var. atropurpureum", en: "Sumatran miniature endemic. Dark black-purple color absorbs thermal energy in cool fogs. High demand for 80%+ humidity. Excellent candidate for tech-heavy terrariums.", es: "Miniatura endémica de Sumatra. Color negro-púrpura absorbe energía térmica en nieblas frías. Alta demanda de humedad (80%+). Excelente para terrarios de alta tecnología." },
+                { name: "Bulbophyllum baileyi", en: "Native to Australia and New Guinea. Aggressive climbing rhizome. Pleasant fruity scent (nectar-seeking pollinators). Requires large wooden slat baskets and bright speckled light.", es: "Nativa de Australia y Nueva Guinea. Rizoma trepador agresivo. Aroma frutal agradable (polinizadores de néctar). Requiere cestas grandes de madera y luz brillante moteada." },
+                { name: "Bulbophyllum membranifolium", en: "Thin 'membranous' leaves lack waxy cuticle. Zero defense against rapid dehydration. Requires shielded plastic pots with water reservoirs to prevent instant crinkling.", es: "Hojas membranosas delgadas sin cutícula cerosa. Sin defensa contra deshidratación rápida. Requiere macetas protegidas con depósitos de agua para evitar marchitamiento." },
+                { name: "Bulbophyllum forrestii", en: "Forms perfect radial daisy-like umbels. High energy demand for flowering. pH 5.8 water and weak MSU-style fertilizer recommended to prevent bloom abortion.", es: "Forma umbelas radiales como margaritas. Alta demanda energética para florar. Agua a pH 5.8 y fertilizante estilo MSU recomendados para evitar aborto de flores." },
+                { name: "Bulbophyllum longiflorum", en: "Spans Africa, Madagascar, Asia, and Australia. Known as 'Pale Umbrella Orchid'. Extreme environmental adaptability. Thrives in stagnant heat (24°C-32°C) and continuous moisture.", es: "Abarca África, Madagascar, Asia y Australia. Conocida como 'Orquídea Paraguas Pálido'. Adaptabilidad ambiental extrema. Prospera con calor (24°C-32°C) y humedad continua." },
+                { name: "Bulbophyllum maximum", en: "African giant. Severely swollen, leaf-like rachis magnified to 'maximum' proportions. Standard pots fail; requires aggressive mounting on large cork or tree-fern slabs.", es: "Gigante africana. Raquis aplanado y grande en proporciones 'máximas'. Macetas estándar fallan; requiere montaje en placas grandes de corcho o helecho arborescente." },
+                { name: "Bulbophyllum vaginatum", en: "Mop-like inflorescence with fireworks effect. Aggressive grower; can multiply from 3 to 14 pseudobulbs in one year with intense moisture and high nutrition.", es: "Inflorescencia tipo fregona con efecto fuegos artificiales. Crecimiento agresivo; puede pasar de 3 a 14 bulbos en un año con mucha humedad y nutrición." },
+                { name: "Bulbophyllum rothschildianum", en: "High-altitude titan (2,130m). Parent of 'Elizabeth Ann'. Large red-striped flowers with peach or decaying scent. Requires sharp nocturnal cooling (6-8°C) to bloom.", es: "Titán de gran altitud (2,130 m). Padre de 'Elizabeth Ann'. Flores grandes con rayas rojas y aroma a melocotón o podrido. Requiere enfriamiento nocturno (6-8°C) para florar." },
+                { name: "Bulbophyllum fenestratum", en: "Name means 'windowed'. Fused sepals have microscopic gaps acting as lightboxes. Obligate shade lover; requires hand-shadow test borders to be almost entirely blurred.", es: "El nombre significa 'con ventanas'. Sépalos fusionados tienen huecos microscópicos que actúan como cajas de luz. Amante de la sombra; requiere sombra muy borrosa." },
+                { name: "Bulbophyllum grandiflorum", en: "Massive species from New Guinea. Huge dorsal sepal acts as an aerodynamic canopy to funnel scents. Requires absolute root hydration via water-tray method to maintain turgor.", es: "Especie masiva de Nueva Guinea. Sépalo dorsal gigante sirve de dosel para canalizar aromas. Requiere hidratación absoluta para mantener la turgencia floral." }
             ];
 
             const filteredTaxa = taxa.filter(t => 
@@ -111,42 +116,53 @@
                         <div className="max-w-4xl mx-auto">
                             <button 
                                 onClick={() => setSelectedTaxon(null)}
-                                className="flex items-center gap-2 text-emerald-700 hover:text-emerald-800 font-semibold mb-6"
+                                className="flex items-center gap-2 text-emerald-700 hover:text-emerald-800 font-semibold mb-6 transition-colors"
                             >
-                                <Icon name="chevron-left" /> Regresar / Back
+                                <LucideIcon name="chevron-left" /> Regresar al menú principal / Back to menu
                             </button>
 
                             <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
                                 <div className="bg-emerald-700 p-6 text-white">
                                     <h1 className="text-3xl font-bold italic">{selectedTaxon.name}</h1>
                                 </div>
-                                <div className="p-6 grid md:grid-cols-2 gap-8">
-                                    <section className="space-y-4">
-                                        <div className="flex items-center gap-2 text-emerald-700 border-b pb-2">
-                                            <Icon name="info" />
-                                            <h2 className="text-xl font-bold">Información</h2>
-                                        </div>
-                                        <p className="text-slate-700 text-sm italic">Español:</p>
-                                        <p className="text-slate-800 mb-4">{selectedTaxon.es}</p>
-                                        <p className="text-slate-700 text-sm italic">English:</p>
-                                        <p className="text-slate-800">{selectedTaxon.en}</p>
-                                    </section>
-                                    <section className="space-y-4">
-                                        <div className="flex items-center gap-2 text-emerald-700 border-b pb-2">
-                                            <Icon name="droplets" />
-                                            <h2 className="text-xl font-bold">Cultivo / Care</h2>
-                                        </div>
-                                        {generalCare.es.map((item, idx) => (
-                                            <div key={item.id} className="bg-slate-50 p-4 rounded-xl border">
-                                                <div className="flex items-center gap-2 mb-2 text-emerald-800 font-bold uppercase text-xs">
-                                                    <Icon name={item.icon} className="w-4 h-4" />
-                                                    {item.title}
-                                                </div>
-                                                <p className="text-sm text-slate-700 mb-2">{item.content}</p>
-                                                <p className="text-xs text-slate-500 italic border-t pt-1">{generalCare.en[idx].content}</p>
+
+                                <div className="p-6 space-y-8">
+                                    <div className="grid md:grid-cols-2 gap-8">
+                                        <section className="space-y-4">
+                                            <div className="flex items-center gap-2 text-emerald-700 border-b border-emerald-100 pb-2">
+                                                <LucideIcon name="info" />
+                                                <h2 className="text-xl font-bold">Información Botánica</h2>
                                             </div>
-                                        ))}
-                                    </section>
+                                            <p className="text-slate-700 leading-relaxed text-sm italic mb-2">Español:</p>
+                                            <p className="text-slate-800 leading-relaxed mb-6">{selectedTaxon.es}</p>
+                                            
+                                            <p className="text-slate-700 leading-relaxed text-sm italic mb-2">English:</p>
+                                            <p className="text-slate-800 leading-relaxed">{selectedTaxon.en}</p>
+                                        </section>
+
+                                        <section className="space-y-4">
+                                            <div className="flex items-center gap-2 text-emerald-700 border-b border-emerald-100 pb-2">
+                                                <LucideIcon name="droplets" />
+                                                <h2 className="text-xl font-bold">Guía de Cultivo / Care</h2>
+                                            </div>
+                                            
+                                            <div className="space-y-4">
+                                                {generalCare.es.map((item, idx) => (
+                                                    <div key={item.id} className="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                                        <div className="flex items-center gap-3 mb-2 text-emerald-800">
+                                                            <LucideIcon name={item.icon} className="w-5 h-5" />
+                                                            <span className="font-bold text-sm uppercase tracking-wider">{item.title}</span>
+                                                        </div>
+                                                        <p className="text-sm text-slate-700 mb-2">{item.content}</p>
+                                                        <div className="pt-2 border-t border-slate-200">
+                                                            <p className="text-xs italic text-slate-500 mb-1">{generalCare.en[idx].title}:</p>
+                                                            <p className="text-xs text-slate-600">{generalCare.en[idx].content}</p>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </section>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -158,34 +174,52 @@
                 <div className="min-h-screen p-4 md:p-8">
                     <div className="max-w-6xl mx-auto">
                         <header className="text-center mb-12">
-                            <h1 className="text-4xl md:text-5xl font-black text-emerald-900 mb-2">BULBOPHYLLUM EXPLORER</h1>
-                            <p className="text-emerald-700 font-medium">Análisis Botánico y Hortícola</p>
+                            <h1 className="text-4xl md:text-5xl font-black text-emerald-900 mb-4 tracking-tight">
+                                BULBOPHYLLUM EXPLORER
+                            </h1>
+                            <p className="text-emerald-700 font-medium text-lg">
+                                Análisis Botánico y Hortícola Exhaustivo / Comprehensive Analysis
+                            </p>
                         </header>
+
                         <div className="relative max-w-xl mx-auto mb-12">
                             <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
-                                <Icon name="search" />
+                                <LucideIcon name="search" />
                             </div>
                             <input 
                                 type="text"
-                                placeholder="Buscar especie... / Search..."
-                                className="w-full pl-12 pr-4 py-4 rounded-full bg-white shadow-lg border-none focus:ring-2 focus:ring-emerald-500 text-lg"
+                                placeholder="Buscar especie o híbrido... / Search..."
+                                className="w-full pl-12 pr-4 py-4 rounded-full bg-white shadow-lg border-none focus:ring-2 focus:ring-emerald-500 text-lg transition-all"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
+
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             {filteredTaxa.map((taxon, index) => (
                                 <button
                                     key={index}
                                     onClick={() => setSelectedTaxon(taxon)}
-                                    className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-left hover:shadow-xl hover:border-emerald-300 transition-all group"
+                                    className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-left hover:shadow-xl hover:border-emerald-300 hover:-translate-y-1 transition-all group"
                                 >
-                                    <h3 className="text-xl font-bold italic text-slate-900 group-hover:text-emerald-700">{taxon.name}</h3>
-                                    <p className="text-slate-500 text-sm mt-2 line-clamp-2">{taxon.es}</p>
-                                    <div className="mt-4 text-emerald-600 text-xs font-bold uppercase tracking-widest">Detalles / Details →</div>
+                                    <h3 className="text-xl font-bold italic text-slate-900 group-hover:text-emerald-700 transition-colors">
+                                        {taxon.name}
+                                    </h3>
+                                    <p className="text-slate-500 text-sm mt-2 line-clamp-2">
+                                        {taxon.es}
+                                    </p>
+                                    <div className="mt-4 flex items-center text-emerald-600 text-xs font-bold uppercase tracking-widest">
+                                        Ver Detalles / View Details →
+                                    </div>
                                 </button>
                             ))}
                         </div>
+
+                        {filteredTaxa.length === 0 && (
+                            <div className="text-center py-20 text-slate-400">
+                                No se encontraron resultados para tu búsqueda.
+                            </div>
+                        )}
                     </div>
                 </div>
             );
